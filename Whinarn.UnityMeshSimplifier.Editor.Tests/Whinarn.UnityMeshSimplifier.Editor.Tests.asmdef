@@ -1,0 +1,19 @@
+{
+    "name": "Whinarn.UnityMeshSimplifier.Editor.Tests",
+    "rootNamespace": "UnityMeshSimplifier.Editor.Tests",
+    "references": [
+            "Whinarn.UnityMeshSimplifier.Runtime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

@@ -1,0 +1,23 @@
+{
+    "name": "SLZ.Marrow.SDK",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Subsystem.Registration",
+        "Unity.ResourceManager",
+        "Unity.Addressables",
+        "Unity.Profiling.Core",
+        "UniTask",
+        "UniTask.Addressables",
+        "UniTask.Linq",
+        "Whinarn.UnityMeshSimplifier.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

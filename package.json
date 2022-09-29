@@ -1,0 +1,31 @@
+{
+  "name": "com.stresslevelzero.marrow.sdk",
+  "version": "0.3.4-1649",
+  "displayName": "Marrow Mod SDK",
+  "description": "Marrow Mod Software Development Kit. Used to create content with Pallets and Crates for Marrow based games.",
+  "unity": "2021.2",
+  "dependencies": {
+    "com.unity.addressables": "1.19.18",
+    "com.unity.nuget.newtonsoft-json": "2.0.0",
+    "com.unity.scriptablebuildpipeline": "1.19.6",
+    "com.unity.subsystemregistration": "1.1.0",
+    "com.unity.profiling.core": "1.0.2",
+    "com.unity.splines": "1.0.1",
+    "com.unity.mathematics": "1.2.6",
+    "com.unity.xr.management": "4.2.1",
+    "com.unity.xr.oculus": "3.0.1",
+    "com.unity.xr.mock-hmd": "1.3.0-preview.1"
+  },
+  "keywords": [
+    "slz",
+    "stresslevelzero",
+    "marrow"
+  ],
+  "author": {
+    "name": "StressLevelZero",
+    "email": "contact@stresslevelzero.com",
+    "url": "http://www.stresslevelzero.com/"
+  },
+  "unityRelease": "14f1",
+  "hideInEditor": false
+}

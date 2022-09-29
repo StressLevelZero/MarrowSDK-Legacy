@@ -1,0 +1,28 @@
+{
+    "name": "SLZ.Marrow.SDK.Editor",
+    "rootNamespace": "",
+    "references": [
+        "SLZ.Marrow.SDK",
+        "Unity.Addressables",
+        "Unity.Addressables.Editor",
+        "Unity.ScriptableBuildPipeline.Editor",
+        "Unity.ResourceManager",
+        "UniTask",
+        "UniTask.Addressables",
+        "UniTask.Editor",
+        "UniTask.Linq",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

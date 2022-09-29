@@ -1,0 +1,29 @@
+{
+    "name": "SLZ.Marrow",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Addressables",
+        "Unity.ResourceManager",
+        "Unity.Mathematics",
+        "Unity.Splines",
+        "Unity.InputSystem",
+        "Unity.XR.Management",
+        "Unity.XR.OpenXR",
+        "Unity.XR.Oculus",
+        "UniTask",
+        "UniTask.Addressables",
+        "UniTask.Linq",
+        "Oculus.Platform",
+        "Oculus.VR",
+        "SLZ.Marrow.SDK"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: PalletAddressableAssetSettings
+  m_EditorClassIdentifier: 
+  m_DefaultGroup: 499503a1c5f51d243842098becdd678e
+  m_OptimizeCatalogSize: 0
+  m_BuildRemoteCatalog: 1
+  m_BundleLocalCatalog: 0
+  m_CatalogRequestsTimeout: 0
+  m_DisableCatalogUpdateOnStart: 0
+  m_IgnoreUnsupportedFilesInBuild: 0
+  m_UniqueBundleIds: 0
+  m_NonRecursiveBuilding: 0
+  m_CCDEnabled: 0
+  m_maxConcurrentWebRequests: 500
+  m_ContiguousBundles: 0
+  m_StripUnityVersionFromBundleBuild: 0
+  m_DisableVisibleSubAssetRepresentations: 0
+  m_ShaderBundleNaming: 0
+  m_ShaderBundleCustomNaming: 
+  m_MonoScriptBundleNaming: 0
+  m_MonoScriptBundleCustomNaming: 
+  m_RemoteCatalogBuildPath:
+    m_Id: 6bdd65658b82ac2448d0b0755e38f033
+  m_RemoteCatalogLoadPath:
+    m_Id: 9d4101b6df4e79e49a7e56a72b2adef3
+  m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 2
+  m_overridePlayerVersion: '[ModID]'
+  m_GroupAssets: []
+  m_BuildSettings:
+    m_CompileScriptsInVirtualMode: 0
+    m_CleanupStreamingAssetsAfterBuilds: 1
+    m_LogResourceManagerExceptions: 1
+    m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
+  m_ProfileSettings:
+    m_Profiles:
+    - m_InheritedParent: 
+      m_Id: 3e7e6a52e2a8c0040a1effb1d7e99b17
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: ad8db0cb0e010564dbfe226ff29b07ba
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 6bdd65658b82ac2448d0b0755e38f033
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 9d4101b6df4e79e49a7e56a72b2adef3
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: d4fb69d38db5f0d468943861688db300
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: f1ce60e5295777d47bcf15502d647a60
+        m_Value: http://localhost/[BuildTarget]
+      - m_Id: 837ecd028ea55df469210d5a3794aeec
+        m_Value: '[SLZ.Marrow.Warehouse.PalletPackerEditor.CurrentPalletFullName]'
+      - m_Id: d1cff0a686ce783489446d31df2aa320
+        m_Value: '[SLZ.Marrow.Warehouse.PalletPackerEditor.CurrentPalletBarcode]'
+      - m_Id: c346880859695d647b4541ec18367b75
+        m_Value: '[SLZ.Marrow.MarrowSDK.BUILT_PALLETS_NAME]'
+    - m_InheritedParent: 
+      m_Id: 9fe895d244817e54b853a6b2886e0a16
+      m_ProfileName: Pallet
+      m_Values:
+      - m_Id: ad8db0cb0e010564dbfe226ff29b07ba
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 6bdd65658b82ac2448d0b0755e38f033
+        m_Value: '[ModBuildPath]/[BuildTarget]/[ModTitle]'
+      - m_Id: 9d4101b6df4e79e49a7e56a72b2adef3
+        m_Value: '{StressLevelZero.BoneMods.BoneModsSDK.RuntimeModsPath}/[ModTitle]'
+      - m_Id: d4fb69d38db5f0d468943861688db300
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: f1ce60e5295777d47bcf15502d647a60
+        m_Value: http://localhost/slzserverhere
+      - m_Id: 837ecd028ea55df469210d5a3794aeec
+        m_Value: '[SLZ.Marrow.Warehouse.PalletPackerEditor.CurrentPalletFullName]'
+      - m_Id: d1cff0a686ce783489446d31df2aa320
+        m_Value: '[SLZ.Marrow.Warehouse.PalletPackerEditor.CurrentPalletBarcode]'
+      - m_Id: c346880859695d647b4541ec18367b75
+        m_Value: '[SLZ.Marrow.MarrowSDK.BUILT_PALLETS_NAME]'
+    m_ProfileEntryNames:
+    - m_Id: ad8db0cb0e010564dbfe226ff29b07ba
+      m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: 6bdd65658b82ac2448d0b0755e38f033
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 9d4101b6df4e79e49a7e56a72b2adef3
+      m_Name: Local.LoadPath
+      m_InlineUsage: 0
+    - m_Id: d4fb69d38db5f0d468943861688db300
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: f1ce60e5295777d47bcf15502d647a60
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    - m_Id: 837ecd028ea55df469210d5a3794aeec
+      m_Name: ModTitle
+      m_InlineUsage: 0
+    - m_Id: d1cff0a686ce783489446d31df2aa320
+      m_Name: ModID
+      m_InlineUsage: 0
+    - m_Id: c346880859695d647b4541ec18367b75
+      m_Name: ModBuildPath
+      m_InlineUsage: 0
+    m_ProfileVersion: 1
+  m_LabelTable:
+    m_LabelNames:
+    - default
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: 38c43e7f24baf844ca2986cdb6ab6ef3, type: 2}
+  - {fileID: 11400000, guid: ffca7548e1bf05545994ccdf3120ee59, type: 2}
+  m_InitializationObjects: []
+  m_CertificateHandlerType:
+    m_AssemblyName: 
+    m_ClassName: 
+  m_ActivePlayerDataBuilderIndex: 3
+  m_DataBuilders:
+  - {fileID: 11400000, guid: 4d61c6658b093d14799670921a2024fa, type: 2}
+  - {fileID: 11400000, guid: 9b4ef2437a4abe34f8d4eb22a2b2ccb0, type: 2}
+  - {fileID: 11400000, guid: 9cc1fd730e7a18c4db612dddb1981042, type: 2}
+  - {fileID: 11400000, guid: 466a9b76b2002494da2ef7e1c1bc540e, type: 2}
+  m_ActiveProfileId: 9fe895d244817e54b853a6b2886e0a16
+  m_HostingServicesManager:
+    m_HostingServiceInfos: []
+    m_Settings: {fileID: 11400000}
+    m_NextInstanceId: 0
+    m_RegisteredServiceTypeRefs: []
+    m_GlobalProfileVariablesInfos:
+    - key: PrivateIpAddress
+      value: 10.20.30.236

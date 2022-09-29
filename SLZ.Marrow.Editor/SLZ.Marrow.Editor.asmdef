@@ -1,0 +1,38 @@
+{
+    "name": "SLZ.Marrow.Editor",
+    "rootNamespace": "",
+    "references": [
+        "SLZ.Marrow",
+        "SLZ.Marrow.SDK",
+        "SLZ.Marrow.SDK.Editor",
+        "Unity.Addressables",
+        "Unity.Addressables.Editor",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.ScriptableBuildPipeline.Editor",
+        "UniTask",
+        "UniTask.Addressables",
+        "UniTask.Linq",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor",
+        "Unity.XR.Oculus",
+        "Unity.Splines",
+        "Unity.Mathematics"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "",
+            "define": "UNIVERSAL_RP"
+        }
+    ],
+    "noEngineReferences": false
+}
