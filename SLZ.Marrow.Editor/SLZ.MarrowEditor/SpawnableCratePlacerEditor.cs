@@ -91,7 +91,7 @@ namespace SLZ.MarrowEditor
 
                 if (GUILayout.Button(new GUIContent("MarrowSDK Documentation - Spawnables", "Open the MarrowSDK Documentation in the default web browser."), MarrowGUIStyles.DefaultButton))
                 {
-                    Application.OpenURL("https://github.com/StressLevelZero/BoneMods-Internal/blob/Greased-Scotsman-docs-update/Docs/Spawnables.md");
+                    Application.OpenURL("https://github.com/StressLevelZero/MarrowSDK/wiki/Spawnables");
                 }
 
                 EditorGUILayout.Space(padding);

@@ -109,7 +109,7 @@ namespace SLZ.MarrowEditor
 
                         if (GUILayout.Button(new GUIContent("Docs", "Open the Asset Warehouse Documentation in the default web browser."), MarrowGUIStyles.DefaultButton))
                         {
-                            Application.OpenURL("https://github.com/StressLevelZero/BoneMods-Internal/blob/Greased-Scotsman-docs-update/Docs/PalletsAndCrates.md");
+                            Application.OpenURL("https://github.com/StressLevelZero/MarrowSDK/wiki/PalletsAndCrates");
                         }
 
 

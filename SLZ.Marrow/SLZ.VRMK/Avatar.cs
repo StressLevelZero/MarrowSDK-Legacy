@@ -6,7 +6,7 @@ using System.Linq;
 namespace SLZ.VRMK
 {
     [System.Serializable]
-    [HelpURL("https://github.com/StressLevelZero/BoneMods-Internal/blob/Greased-Scotsman-docs-update/Docs/Avatars.md")]
+    [HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/Avatars")]
     [AddComponentMenu("MarrowSDK/Avatar")]
     public partial class Avatar : MonoBehaviour
     {
