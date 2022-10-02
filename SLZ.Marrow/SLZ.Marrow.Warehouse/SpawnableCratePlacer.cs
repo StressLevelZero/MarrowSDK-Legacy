@@ -13,6 +13,7 @@ namespace SLZ.Marrow.Warehouse
 
     [SelectionBase]
     [AddComponentMenu("MarrowSDK/Spawnable Crate Placer")]
+    [HelpURL("https://github.com/StressLevelZero/MarrowSDK/wiki/Spawnables")]
     public partial class SpawnableCratePlacer : MonoBehaviour
     {
         [SerializeField] public SpawnableCrateReference spawnableCrateReference = new SpawnableCrateReference(Barcode.EmptyBarcode());

@@ -1,6 +1,6 @@
 {
   "name": "com.stresslevelzero.marrow.sdk",
-  "version": "0.3.4-1649",
+  "version": "0.3.5-preview",
   "displayName": "Marrow Mod SDK",
   "description": "Marrow Mod Software Development Kit. Used to create content with Pallets and Crates for Marrow based games.",
   "unity": "2021.2",

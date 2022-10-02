@@ -20,6 +20,16 @@ namespace SLZ.Marrow.SceneStreaming
                 EditorMeshGizmo.Draw("PlayerMarker Preview", playerMarker.gameObject, MarrowSDK.GenericHumanMesh, MarrowSDK.VoidMaterialAlt, MarrowSDK.GenericHumanMesh.bounds);
             }
         }
+
+        [MenuItem("GameObject/MarrowSDK/Player Marker", priority = 1)]
+        private static void MenuCreatePlacer(MenuCommand menuCommand)
+        {
+            GameObject go = new GameObject("Player Marker", typeof(PlayerMarker));
+            go.transform.localScale = Vector3.one;
+
+            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
+            Selection.activeObject = go;
+        }
 #endif
     }
 }

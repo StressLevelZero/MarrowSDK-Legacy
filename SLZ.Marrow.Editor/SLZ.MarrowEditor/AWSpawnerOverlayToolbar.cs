@@ -20,7 +20,7 @@ namespace SLZ.MarrowEditor
         private const string ID_OVERLAY_AWSPAWNABLE = "aw-spawnable-overlay-toolbar";
         private const string COLLAPSED_TOOLTIP = "Select a Spawnable Crate from the Asset Warehouse and Drag it into the Scene";
         private const string EXPANDED_TOOLTIP = "Select a Spawnable Crate from the Asset Warehouse";
-        private const string PREFAB_PATH = "Editor/Assets/Prefabs/Spawnable Placer (Template).prefab";
+        private const string PREFAB_PATH = "Assets/Prefabs/Spawnable Placer (Template).prefab";
         private SpawnableCrate currentCrate = null;
         GameObject spawnablePrefab = null;
 
@@ -146,7 +146,7 @@ namespace SLZ.MarrowEditor
 
                 CheckOverlayPrefabInit(dragSpawnableLabel, dragSpawnableTexture, initializeOverlayButton);
 
-                if (File.Exists(MarrowSDK.GetPackagePath(PREFAB_PATH)) && spawnablePrefab == null)
+                if (File.Exists(PREFAB_PATH) && spawnablePrefab == null)
                 {
 
                     SetSpawnablePrefab();
@@ -174,7 +174,7 @@ namespace SLZ.MarrowEditor
 
         private void CheckOverlayPrefabInit(Label dragSpawnableLabel, Image dragSpawnableTexture, Button initializeOverlayButton)
         {
-            if (!File.Exists(MarrowSDK.GetPackagePath(PREFAB_PATH)))
+            if (!File.Exists(PREFAB_PATH))
             {
                 spawnablePrefab = null;
                 dragSpawnableLabel.style.display = DisplayStyle.None;
@@ -213,12 +213,12 @@ namespace SLZ.MarrowEditor
 
         private void CreateSpawnablePrefab(GameObject createPrefab)
         {
-            if (!Directory.Exists("Assets/Temp"))
+            if (!Directory.Exists("Assets/Prefabs"))
             {
-                AssetDatabase.CreateFolder("Assets", "Temp");
+                AssetDatabase.CreateFolder("Assets", "Prefabs");
             }
 
-            if (File.Exists(MarrowSDK.GetPackagePath(PREFAB_PATH)))
+            if (File.Exists(PREFAB_PATH))
             {
 
                 Debug.Log("File already exists, skipping creation");
@@ -230,7 +230,7 @@ namespace SLZ.MarrowEditor
                 createPrefab.AddComponent<SpawnableCratePlacer>();
                 createPrefab.GetComponent<MeshRenderer>().material = MarrowSDK.VoidMaterial;
 
-                PrefabUtility.SaveAsPrefabAsset(createPrefab, MarrowSDK.GetPackagePath(PREFAB_PATH), out prefabCreated);
+                PrefabUtility.SaveAsPrefabAsset(createPrefab, PREFAB_PATH, out prefabCreated);
 
 
                 if (prefabCreated == true)
@@ -267,7 +267,7 @@ namespace SLZ.MarrowEditor
         {
             if (spawnablePrefab == null)
             {
-                spawnablePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(MarrowSDK.GetPackagePath(PREFAB_PATH));
+                spawnablePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PREFAB_PATH);
 
                 if (spawnablePrefab.GetComponent<SpawnableCratePlacer>() == null) { spawnablePrefab.AddComponent<SpawnableCratePlacer>(); }
                 if (spawnablePrefab.GetComponent<MeshRenderer>() == null) { spawnablePrefab.AddComponent<MeshRenderer>().material = MarrowSDK.VoidMaterial; }

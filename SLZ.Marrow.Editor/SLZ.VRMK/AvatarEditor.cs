@@ -340,7 +340,7 @@ namespace SLZ.VRMK
 
                     if (GUILayout.Button(new GUIContent("MarrowSDK Documentation - Avatars", "Open the MarrowSDK Documentation in the default web browser."), MarrowGUIStyles.DefaultButton))
                     {
-                        Application.OpenURL("https://github.com/StressLevelZero/BoneMods-Internal/blob/Greased-Scotsman-docs-update/Docs/Avatars.md");
+                        Application.OpenURL("https://github.com/StressLevelZero/MarrowSDK/wiki/Avatars");
                     }
 
 

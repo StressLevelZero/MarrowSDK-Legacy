@@ -75,13 +75,11 @@ namespace SLZ.MarrowEditor
             {
                 folderToOpen = Path.GetFullPath(folderPath);
 
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
-                {
-                    Arguments = folderToOpen,
-                    FileName = "explorer.exe"
-                };
 
-                System.Diagnostics.Process.Start(startInfo);
+
+
+
+                EditorUtility.RevealInFinder(folderToOpen);
             }
         }
 
