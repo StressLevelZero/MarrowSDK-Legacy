@@ -28,6 +28,7 @@ namespace SLZ.Marrow.Warehouse
 #if UNITY_EDITOR
 
         public static bool showPreviewMesh = true;
+        public static bool showColliderBounds = true;
         public static bool showLitMaterialPreview = false;
         private static Material defaultLitMat = null;
 #endif
@@ -68,7 +69,7 @@ namespace SLZ.Marrow.Warehouse
                 {
                     defaultLitMat = AssetDatabase.LoadAssetAtPath<Material>("Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat");
                 }
-                EditorPreviewMeshGizmo.Draw("PreviewMesh", placer.gameObject, placer.GetCrateReference(), showLitMaterialPreview ? defaultLitMat : MarrowSDK.VoidMaterial, !showPreviewMesh, true);
+                EditorPreviewMeshGizmo.Draw("PreviewMesh", placer.gameObject, placer.GetCrateReference(), showLitMaterialPreview ? defaultLitMat : MarrowSDK.VoidMaterial, !showPreviewMesh, !showColliderBounds, true);
                 placer.EditorUpdateName();
             }
         }

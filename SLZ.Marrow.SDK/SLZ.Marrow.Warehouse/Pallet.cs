@@ -272,7 +272,7 @@ namespace SLZ.Marrow.Warehouse
 
 #if UNITY_EDITOR
         [ContextMenu("Save Json to File")]
-        private void SaveJsonToFile()
+        private void SaveJsonToAssetDatabase()
         {
             string palletPath = AssetDatabase.GetAssetPath(this);
             palletPath = System.IO.Path.GetDirectoryName(palletPath);

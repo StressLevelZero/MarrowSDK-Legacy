@@ -16,8 +16,11 @@ namespace SLZ.VRMK
         [Tooltip("Use this to override eyeCenter in case an avatar doesn't feature eye bones")]
         public Transform eyeCenterOverride;
 
+        [Tooltip("Required field for all meshes that are not seperate head or hair meshes")]
         public SkinnedMeshRenderer[] bodyMeshes;
+        [Tooltip("Optional field for models with seperate head mesh(es)")]
         public SkinnedMeshRenderer[] headMeshes;
+        [Tooltip("Optional field for all meshes related to the hair")]
         public SkinnedMeshRenderer[] hairMeshes;
 
         [Range(0f, .16f)]

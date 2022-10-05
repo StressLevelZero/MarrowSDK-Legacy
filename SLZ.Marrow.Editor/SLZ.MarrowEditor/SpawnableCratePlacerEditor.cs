@@ -18,7 +18,8 @@ namespace SLZ.MarrowEditor
         SerializedProperty placedSpawnableProperty;
         SerializedProperty onPlaceEventProperty;
 
-        private static GUIContent gizmoIcon = null;
+        private static GUIContent previewMeshGizmoIcon = null;
+        private static GUIContent colliderBoundsGizmoIcon = null;
         private static GUIContent materialIconOn = null;
         private static GUIContent materialIconOff = null;
 
@@ -53,10 +54,15 @@ namespace SLZ.MarrowEditor
             }
 
 
-            if (gizmoIcon == null)
+            if (previewMeshGizmoIcon == null)
             {
-                gizmoIcon = new GUIContent(EditorGUIUtility.IconContent("d_GizmosToggle On@2x"));
-                gizmoIcon.tooltip = "Toggle Preview Mesh Gizmo";
+                previewMeshGizmoIcon = new GUIContent(EditorGUIUtility.IconContent("d_GizmosToggle On@2x"));
+                previewMeshGizmoIcon.tooltip = "Toggle Preview Mesh Gizmo";
+            }
+            if (colliderBoundsGizmoIcon == null)
+            {
+                colliderBoundsGizmoIcon = new GUIContent(EditorGUIUtility.IconContent("d_BoxCollider2D Icon"));
+                colliderBoundsGizmoIcon.tooltip = "Toggle Collider Bounds";
             }
             if (materialIconOn == null)
             {
@@ -160,7 +166,7 @@ namespace SLZ.MarrowEditor
 
                     using (var check = new EditorGUI.ChangeCheckScope())
                     {
-                        var togglebut = GUILayout.Toggle(SpawnableCratePlacer.showPreviewMesh, gizmoIcon, MarrowGUIStyles.DefaultIconButton);
+                        var togglebut = GUILayout.Toggle(SpawnableCratePlacer.showPreviewMesh, previewMeshGizmoIcon, MarrowGUIStyles.DefaultIconButton);
                         if (check.changed)
                         {
                             SpawnableCratePlacer.showPreviewMesh = togglebut;
@@ -168,9 +174,20 @@ namespace SLZ.MarrowEditor
                         }
                     }
 
-                    var testStyle = new GUIStyle(MarrowGUIStyles.DefaultIconButton);
-                    testStyle.padding = new RectOffset(-16, -16, 0, 0);
-                    if (GUILayout.Button((SpawnableCratePlacer.showLitMaterialPreview ? materialIconOff : materialIconOn), testStyle))
+                    var skinnyIcon = new GUIStyle(MarrowGUIStyles.DefaultIconButton);
+                    skinnyIcon.padding = new RectOffset((int)-EditorGUIUtility.singleLineHeight, (int)-EditorGUIUtility.singleLineHeight, 0, 0);
+
+                    using (var check = new EditorGUI.ChangeCheckScope())
+                    {
+                        var togglebut = GUILayout.Toggle(SpawnableCratePlacer.showColliderBounds, colliderBoundsGizmoIcon, skinnyIcon);
+                        if (check.changed)
+                        {
+                            SpawnableCratePlacer.showColliderBounds = togglebut;
+                            InternalEditorUtility.RepaintAllViews();
+                        }
+                    }
+
+                    if (GUILayout.Button((SpawnableCratePlacer.showLitMaterialPreview ? materialIconOff : materialIconOn), skinnyIcon))
                     {
                         SpawnableCratePlacer.showLitMaterialPreview = !SpawnableCratePlacer.showLitMaterialPreview;
                         InternalEditorUtility.RepaintAllViews();

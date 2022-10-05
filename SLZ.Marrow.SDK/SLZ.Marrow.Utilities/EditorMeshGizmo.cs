@@ -84,21 +84,13 @@ namespace SLZ.Marrow.Utilities
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private MeshFilter meshFilter;
 
-        private static readonly Dictionary<(string, GameObject), EditorMeshGizmo> meshGizmoCache = new();
+        private static readonly Dictionary<(string, GameObject), EditorMeshGizmo> meshGizmoCache = new Dictionary<(string, GameObject), EditorMeshGizmo>();
 
         public void DrawBounds()
         {
-            if (_editorMesh != null && meshRenderer != null)
+            if (EditorBounds.HasValue || EditorBounds.Value != default)
             {
-                Bounds bounds;
-                if (EditorBounds.HasValue)
-                {
-                    bounds = EditorBounds.Value;
-                }
-                else
-                {
-                    bounds = meshFilter.sharedMesh.bounds;
-                }
+                Bounds bounds = EditorBounds.Value;
 
                 var color = Gizmos.color;
                 var transform1 = transform;
@@ -110,7 +102,6 @@ namespace SLZ.Marrow.Utilities
                 Gizmos.matrix *= Matrix4x4.TRS(position, rotation, Vector3.one);
                 Gizmos.matrix *= Matrix4x4.Translate(bounds.center);
                 Gizmos.DrawWireCube(Vector3.zero, bounds.size);
-
 
                 Gizmos.color = color;
                 Gizmos.matrix = oldGizmosMatrix;

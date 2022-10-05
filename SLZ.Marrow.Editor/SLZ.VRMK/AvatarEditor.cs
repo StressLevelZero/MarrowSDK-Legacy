@@ -260,7 +260,11 @@ namespace SLZ.VRMK
                 helpText = EditorGUILayout.Foldout(helpText, "Usage Info");
                 if (helpText)
                 {
-                    EditorGUILayout.LabelField("Avatars alter the player's appearance, size, strength and speed.", MarrowGUIStyles.DefaultRichText);
+                    EditorGUILayout.LabelField("Avatars alter the player's appearance, size, strength and speed.\n"
+                        + "\n"
+                        + "Once the Avatar becomes a Prefab (see steps below), it is recommended to <i>directly edit the Prefab</i> when making changes or be sure to <i>Apply Overrides</i> made to the Avatar GameObject as changes are made.\n"
+                        + "\n"
+                        + "Avatars reference the Prefab in the Project window <i>not</i> the GameObject in the Scene.", MarrowGUIStyles.DefaultRichText);
                     EditorGUILayout.Space(padding);
 
                     using (new EditorGUI.IndentLevelScope())

@@ -1,11 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SLZ.Marrow;
 using SLZ.Marrow.Warehouse;
 using System.Linq;
+
 
 namespace SLZ.MarrowEditor
 {
@@ -19,6 +20,8 @@ namespace SLZ.MarrowEditor
         private Rect searchBarRect;
         private Vector2 warehouseScrollPos;
         private Rect tagsButtonRect;
+        private int palletIndex = 0;
+        private int buildIndex = 0;
 
 
 
@@ -115,23 +118,45 @@ namespace SLZ.MarrowEditor
 
                         GUILayout.FlexibleSpace();
 
-                        bool disablePackButtons = false;
-
-                        if (AssetWarehouse.Instance.GetPallets().Count > 1)
+                        if (treeViewAW != null)
                         {
-                            disablePackButtons = true;
-                        }
+                            List<string> buildPlatform = new List<string>();
 
-                        foreach (Pallet pal in AssetWarehouse.Instance.GetPallets())
-                        {
-                            if (treeViewAW != null)
+                            buildPlatform.Add("PC");
+                            buildPlatform.Add("Q2");
+
+                            if (AssetWarehouse.Instance.GetPallets().Count == 1)
                             {
-                                if (!pal.Internal)
+                                foreach (Pallet pal in AssetWarehouse.Instance.GetPallets())
                                 {
-                                    if (disablePackButtons == false)
+                                    if (!pal.Internal)
                                     {
+
+                                        EditorGUI.BeginChangeCheck();
+                                        buildIndex = EditorGUILayout.Popup(buildIndex, buildPlatform.ToArray(), GUILayout.MaxWidth(40));
+                                        if (EditorGUI.EndChangeCheck())
+                                        {
+
+
+                                        }
+
                                         if (GUILayout.Button(new GUIContent(" Pack " + pal.Title, treeViewAW.palletIcon, "Build the pallet into a mod"), MarrowGUIStyles.DefaultButton))
                                         {
+                                            if (buildPlatform[buildIndex] == "PC")
+                                            {
+                                                if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneWindows64)
+                                                {
+                                                    EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+                                                {
+                                                    EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                                                }
+                                            }
+
                                             bool success = PalletPackerEditor.PackPallet(pal);
                                             if (success)
                                             {
@@ -139,19 +164,59 @@ namespace SLZ.MarrowEditor
                                             }
                                         }
                                     }
-                                    else
-                                    {
-                                        GUI.enabled = false;
-                                        if (GUILayout.Button(new GUIContent(" WARNING! Multiple Pallets Detected! Pack Disabled", treeViewAW.palletIcon, "Building the Pallet into a mod is disabled, multiple Pallets detected."), MarrowGUIStyles.DefaultButton))
-                                        {
+                                }
+                            }
 
-                                        }
-                                        GUI.enabled = true;
+                            if (AssetWarehouse.Instance.GetPallets().Count > 1)
+                            {
+                                List<string> palletTitles = new List<string>();
+                                List<Pallet> pallets = new List<Pallet>();
+
+                                foreach (Pallet pal in AssetWarehouse.Instance.GetPallets())
+                                {
+                                    if (!pal.Internal)
+                                    {
+                                        palletTitles.Add(pal.Title);
+                                        pallets.Add(pal);
                                     }
                                 }
 
+                                EditorGUI.BeginChangeCheck();
+                                palletIndex = EditorGUILayout.Popup(palletIndex, palletTitles.ToArray(), GUILayout.MaxWidth(100));
+                                buildIndex = EditorGUILayout.Popup(buildIndex, buildPlatform.ToArray(), GUILayout.MaxWidth(40));
+                                if (EditorGUI.EndChangeCheck())
+                                {
+
+
+                                }
+
+                                if (GUILayout.Button(new GUIContent(" Pack", treeViewAW.palletIcon, "Build the pallet into a mod"), MarrowGUIStyles.DefaultButton))
+                                {
+                                    if (buildPlatform[buildIndex] == "PC")
+                                    {
+                                        if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneWindows64)
+                                        {
+                                            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+                                        {
+                                            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                                        }
+                                    }
+
+                                    bool success = PalletPackerEditor.PackPallet(pallets[palletIndex]);
+                                    if (success)
+                                    {
+                                        ModBuilder.OpenContainingBuiltModFolder(pallets[palletIndex]);
+                                    }
+
+                                }
                             }
                         }
+
 
                     }
 

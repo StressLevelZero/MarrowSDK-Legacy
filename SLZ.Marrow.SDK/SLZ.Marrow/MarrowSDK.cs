@@ -14,7 +14,7 @@ namespace SLZ.Marrow
     public static class MarrowSDK
     {
         public const string SDK_NAME = "Marrow SDK";
-        public const string SDK_VERSION = "0.3.5-preview";
+        public const string SDK_VERSION = "0.3.6-1692";
 
         public const string DEV_NAME = "Stress Level Zero";
         public const string DEV_NAME_ALT = "StressLevelZero";

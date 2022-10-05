@@ -6,7 +6,7 @@ namespace SLZ.Marrow.Utilities
 {
     public class EditorPreviewMeshGizmo : EditorMeshGizmo
     {
-        public static EditorPreviewMeshGizmo Draw(string id, GameObject targetGameObject, SpawnableCrateReference crateReference, Material material, bool hidePreviewMesh = false, bool showInPlayMode = false)
+        public static EditorPreviewMeshGizmo Draw(string id, GameObject targetGameObject, SpawnableCrateReference crateReference, Material material, bool hidePreviewMesh = false, bool hideBounds = false, bool showInPlayMode = false)
         {
             Mesh previewMesh = null;
             Bounds bounds = default;
@@ -24,9 +24,28 @@ namespace SLZ.Marrow.Utilities
                     }
                 }
 
-                if (crateReference != null && crateReference.EditorCrate != null)
+                if (hideBounds)
+                {
+                    bounds = default;
+                }
+                else if (crateReference != null && crateReference.EditorCrate != null)
                 {
                     bounds = crateReference.EditorCrate.ColliderBounds;
+
+
+
+
+
+
+
+
+
+
+
+                }
+                else if (previewMesh == MarrowSDK.VoidMesh)
+                {
+                    bounds = MarrowSDK.VoidMesh.bounds;
                 }
             }
 
