@@ -71,6 +71,11 @@ namespace SLZ.MarrowEditor
 
                 List<MarrowProjectValidation.MarrowValidationRule> issues = new List<MarrowProjectValidation.MarrowValidationRule>();
                 MarrowProjectValidation.GetIssues(issues);
+
+
+
+
+
                 MarrowProjectValidation.FixIssues(issues);
             }
 
@@ -82,6 +87,22 @@ namespace SLZ.MarrowEditor
             {
                 CurrentPallet = pallet;
             }
+
+            if (!pallet.Internal)
+            {
+
+                foreach (var crate in pallet.Crates)
+                {
+                    if (crate != null && crate is LevelCrate levelCrate)
+                    {
+                        levelCrate.ValidateSceneGUID();
+                    }
+                }
+            }
+
+
+
+            TextureStreamTool.ApplyTextureStreamingToAllTextures();
 
 
 

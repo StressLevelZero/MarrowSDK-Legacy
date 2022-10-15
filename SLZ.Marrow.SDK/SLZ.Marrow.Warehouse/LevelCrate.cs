@@ -69,6 +69,39 @@ namespace SLZ.Marrow.Warehouse
         public List<MarrowScene> EditorScenes => _editorScenes;
 
 #if UNITY_EDITOR
+        private string CURSED_SCENE_GUID = "99c9720ab356a0642a771bea13969a05";
+
+        [ContextMenu("Validate Scene Guid")]
+        public void ValidateSceneGUID()
+        {
+            if (!string.IsNullOrEmpty(MainScene.AssetGUID))
+            {
+                if (MainScene.AssetGUID == CURSED_SCENE_GUID)
+                {
+                    var scenePath = AssetDatabase.GUIDToAssetPath(CURSED_SCENE_GUID);
+                    var metaPath = AssetDatabase.GetTextMetaFilePathFromAssetPath(scenePath);
+
+                    var metaText = System.IO.File.ReadAllText(metaPath);
+
+                    if (metaText.Contains(CURSED_SCENE_GUID) && metaText.Contains($"guid: {CURSED_SCENE_GUID}"))
+                    {
+                        string newGuid = System.Guid.NewGuid().ToString("N");
+                        metaText = metaText.Replace($"guid: {CURSED_SCENE_GUID}", $"guid: {newGuid}");
+
+                        System.IO.File.WriteAllText(metaPath, metaText);
+                        MainScene = new MarrowScene(newGuid);
+
+                        EditorUtility.SetDirty(this);
+                        AssetDatabase.ImportAsset(scenePath);
+                        AssetDatabase.SaveAssetIfDirty(this);
+                        AssetDatabase.Refresh();
+                    }
+                }
+            }
+        }
+#endif
+
+#if UNITY_EDITOR
         public override System.Type AssetType
         {
             get => typeof(SceneAsset);

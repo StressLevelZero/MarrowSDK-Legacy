@@ -68,6 +68,41 @@ namespace SLZ.MarrowEditor
             set { _gamePathDictionary = value; }
         }
 
+        public static void InstallMod(string modFolderPath, string gameModsFolder)
+        {
+            if (Directory.Exists(modFolderPath) && Directory.Exists(gameModsFolder))
+            {
+                string destModFolderPath = Path.Combine(gameModsFolder, Path.GetFileName(modFolderPath));
+                Debug.Log($"install {modFolderPath} in {destModFolderPath}");
+
+                if (Directory.Exists(destModFolderPath))
+                    Directory.Delete(destModFolderPath, true);
+
+                var modDirectories = Directory.GetDirectories(modFolderPath, "*", SearchOption.AllDirectories);
+                foreach (string dir in modDirectories)
+                {
+                    Directory.CreateDirectory(dir.Replace(modFolderPath, destModFolderPath));
+                }
+
+                var modFiles = Directory.GetFiles(modFolderPath, "*.*", SearchOption.AllDirectories);
+                foreach (string file in modFiles)
+                {
+
+                    if (!Directory.Exists(file))
+                    {
+                        File.Copy(file, file.Replace(modFolderPath, destModFolderPath));
+                    }
+                }
+            }
+            else
+            {
+                if (!Directory.Exists(modFolderPath))
+                    Debug.LogError($"Mod folder missing at: {modFolderPath}");
+                if (!Directory.Exists(gameModsFolder))
+                    Debug.LogError($"Game Mods folder missing at: {gameModsFolder}");
+            }
+        }
+
         private static void OpenFolder(string folderPath)
         {
             string folderToOpen = folderPath;

@@ -1,3 +1,4 @@
+using SLZ.Marrow;
 using UnityEngine;
 using UnityEditor;
 using SLZ.Marrow.Warehouse;
@@ -101,6 +102,49 @@ namespace SLZ.MarrowEditor
                     if (success)
                     {
                         ModBuilder.OpenContainingBuiltModFolder(pallet);
+                    }
+                }
+
+                EditorGUILayout.Space(EditorGUIUtility.singleLineHeight / 4f);
+
+                if (GUILayout.Button(new GUIContent("Pack for Both", "Build the pallet into a mod for all supported platforms (PC/Quest)"), GUILayout.ExpandWidth(false)))
+                {
+                    if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.StandaloneWindows64)
+                    {
+                        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+                    }
+                    bool success = PalletPackerEditor.PackPallet(pallet);
+                    if (success)
+                    {
+                        ModBuilder.OpenContainingBuiltModFolder(pallet);
+                    }
+
+                    AssetDatabase.Refresh();
+
+                    if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+                    {
+                        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                    }
+                    success = PalletPackerEditor.PackPallet(pallet);
+                    if (success)
+                    {
+                        ModBuilder.OpenContainingBuiltModFolder(pallet);
+                    }
+                }
+
+                EditorGUILayout.Space(EditorGUIUtility.singleLineHeight);
+
+                string standalone64 = BuildTarget.StandaloneWindows64.ToString();
+                string palletFolder = System.IO.Path.Combine(System.IO.Directory.GetParent(Application.dataPath).ToString(), MarrowSDK.BUILT_PALLETS_NAME, standalone64, pallet.Barcode);
+
+                if (System.IO.Directory.Exists(palletFolder))
+                {
+                    foreach (var gamePath in ModBuilder.GamePathDictionary)
+                    {
+                        if (GUILayout.Button(new GUIContent($"Install for {gamePath.Key} on PC", "Install the pallet for PC"), GUILayout.ExpandWidth(false)))
+                        {
+                            ModBuilder.InstallMod(palletFolder, System.IO.Path.Combine(gamePath.Value, MarrowSDK.RUNTIME_MODS_DIRECTORY_NAME));
+                        }
                     }
                 }
             }
