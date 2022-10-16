@@ -45,47 +45,33 @@ namespace MetaFileUpdater
             allFoundGuids.Clear();
             autoFixedAny = false;
 
+            string[] newMetaFilePaths = Directory.GetFiles(rootAssetsFolderNew, $"*.meta", SearchOption.AllDirectories)
+                .Concat(Directory.GetFiles(rootAssetsFolderNew + "/../Library/PackageCache/", $"*.meta", SearchOption.AllDirectories)).ToArray();
+            WriteLine($"Found {newMetaFilePaths.Length} meta files in new directorys");
+            var newMetaFilesLookup = new Dictionary<string, string>();
+            newMetaFilePaths.ToList().ForEach(path => {
+                // Add both the file name, and local path to the lookup
+                var fileName = Path.GetFileName(path);
+                if (newMetaFilesLookup.ContainsKey(fileName)) {
+                    //WriteWarning($"Duplicate meta filename: {fileName}. May hook up the wrong reference.");
+                } else {
+                    newMetaFilesLookup[fileName] = path;
+                }
+                if (!newMetaFilesLookup.ContainsKey(PathToLocal(path))) {
+                    newMetaFilesLookup[PathToLocal(path)] = path;
+                }
+            });
+
             var foundFiles = 0;
             if (File.Exists($"{rootAssetsFolderOriginal}/GuidCache")) { // Use the cache! Woot!
                 var lines = File.ReadAllLines($"{rootAssetsFolderOriginal}/GuidCache");
                 foundFiles += lines.Length;
-                string[] newMetaFilePaths = Directory.GetFiles(rootAssetsFolderNew, $"*.meta", SearchOption.AllDirectories);
-                var newMetaFilesLookup = new Dictionary<string, string>();
-                newMetaFilePaths.ToList().ForEach(path => {
-                    // Add both the file name, and local path to the lookup
-                    var fileName = Path.GetFileName(path);
-                    if (newMetaFilesLookup.ContainsKey(fileName)) {
-                        //WriteWarning($"Duplicate meta filename: {fileName}. May hook up the wrong reference.");
-                    } else {
-                        newMetaFilesLookup[fileName] = path;
-                    }
-                    if (!newMetaFilesLookup.ContainsKey(PathToLocal(path))) {
-                        newMetaFilesLookup[PathToLocal(path)] = path;
-                    }
-
-                });
                 FindReplacementGUIDs(
                     lines.ToDictionary(p => rootAssetsFolderOriginal + p.Substring(32), p => p.Substring(0, 32)),
                     newMetaFilesLookup);
             } else { // We need to go through all the meta files - then we can cache their guid against them 
-                string[] newMetaFilePaths = Directory.GetFiles(rootAssetsFolderNew, $"*.meta", SearchOption.AllDirectories)
-                    .Concat(Directory.GetFiles(rootAssetsFolderNew + "../Library/PackageCache/", $"*.meta", SearchOption.AllDirectories)).ToArray();
                 string[] oldMetaFilePaths = Directory.GetFiles(rootAssetsFolderOriginal, $"*.meta", SearchOption.AllDirectories);
                 foundFiles += oldMetaFilePaths.Length;
-
-                var newMetaFilesLookup = new Dictionary<string, string>();
-                newMetaFilePaths.ToList().ForEach(path => {
-                    // Add both the file name, and local path to the lookup
-                    var fileName = Path.GetFileName(path);
-                    if (newMetaFilesLookup.ContainsKey(fileName)) {
-                        //WriteWarning($"Duplicate meta filename: {fileName}. May hook up the wrong reference.");
-                    } else {
-                        newMetaFilesLookup[fileName] = path;
-                    }
-                    if (!newMetaFilesLookup.ContainsKey(PathToLocal(path))) {
-                        newMetaFilesLookup[PathToLocal(path)] = path;
-                    }
-                });
 
                 WriteLine($"Found {foundFiles} meta files in original directory");
 
